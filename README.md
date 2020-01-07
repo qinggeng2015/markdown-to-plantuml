@@ -23,11 +23,11 @@ Class05 --> "1" Class06
 @enduml
 ')
 
-<img src='http://139.199.126.68:8080/png?
+
+<img src='http://139.199.126.68:8080/svg?
     @startuml
-    Alice -> Bo1111123111111b: Authentication Request
-    Bob --> Alice: Authentication Response
+    Alice -> Bo1111122212212312321222111b: Authentication Request
+    Bob --> Alice123: Authentic2ation Response
     Alice -> Bob: Another authentication Request
-    Alice <-- Bob111: another authentication Response
-    @enduml
-)' align="left"></img>
+    Alice <-- Bob1111111: another authentication Response
+    @enduml'>
