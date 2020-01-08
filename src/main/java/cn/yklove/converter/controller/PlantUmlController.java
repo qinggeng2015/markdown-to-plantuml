@@ -57,16 +57,8 @@ public class PlantUmlController {
         }
     }
 
-    @RequestMapping(value = "{type}",produces = MediaType.IMAGE_PNG_VALUE)
-    public byte[] svg(@PathVariable("type") String type, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        FileFormatOption fileFormatOption = this.type.get(type);
-        if (Objects.isNull(fileFormatOption)) {
-            return null;
-        }
-        String mediaType = contextType.get(type);
-        if (Strings.isBlank(mediaType)) {
-            return null;
-        }
+    @RequestMapping(value = "svg",produces = "image/svg+xml")
+    public byte[] svg(HttpServletRequest request, HttpServletResponse response) throws IOException {
         log.info("query = {}", request.getQueryString());
         String decode = URLDecoder.decode(request.getQueryString());
         decode = decode.replaceAll("\\u200B","");
@@ -78,10 +70,10 @@ public class PlantUmlController {
             bufferedWriter.write(decode);
             bufferedWriter.close();
         }
-        File converterFile = new File(originPath + "/" + originMd5 + "." + type);
+        File converterFile = new File(originPath + "/" + originMd5 + "." + "svg");
         if (!converterFile.exists()) {
-            SourceFileReader sourceFileReader = new SourceFileReader(originFile,
-                    originFile.getAbsoluteFile().getParentFile(), fileFormatOption);
+            SourceFileReader sourceFileReader = new SourceFileReader(originFile,originFile.getAbsoluteFile().getParentFile(),new FileFormatOption(
+                    FileFormat.SVG));
             List<GeneratedImage> generatedImages = sourceFileReader.getGeneratedImages();
             if (CollectionUtils.isEmpty(generatedImages)) {
                 return null;
@@ -90,7 +82,6 @@ public class PlantUmlController {
         FileInputStream inputStream = new FileInputStream(converterFile);
         byte[] bytes = new byte[inputStream.available()];
         inputStream.read(bytes, 0, inputStream.available());
-        response.setHeader("Content-Type",mediaType);
         return bytes;
     }
 
