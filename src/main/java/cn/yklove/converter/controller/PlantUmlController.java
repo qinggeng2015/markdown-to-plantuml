@@ -32,21 +32,6 @@ public class PlantUmlController {
 
     private final String basePath = "plant-tmp";
     private final String originPath = basePath + "/origin";
-    private final Map<String, FileFormatOption> type;
-    private final Map<String, String> contextType;
-
-    public PlantUmlController() {
-        this.type = new HashMap<>();
-        this.type.put("png", new FileFormatOption(FileFormat.PNG));
-        this.type.put("svg", new FileFormatOption(FileFormat.SVG));
-        this.type.put("jpeg", new FileFormatOption(FileFormat.MJPEG));
-
-        this.contextType = new HashMap<>();
-        this.contextType.put("png", MediaType.IMAGE_PNG_VALUE);
-        this.contextType.put("svg", "image/svg+xml");
-        this.contextType.put("jpeg", MediaType.IMAGE_JPEG_VALUE);
-
-    }
 
     @PostConstruct
     public void init() throws IOException {
@@ -62,6 +47,17 @@ public class PlantUmlController {
         log.info("query = {}", request.getQueryString());
         String decode = URLDecoder.decode(request.getQueryString());
         decode = decode.replaceAll("\\u200B","");
+        char[] chars = decode.toCharArray();
+        int line = 0;
+        for (char charTmp : chars) {
+            if(charTmp == '\n'){
+                line++;
+            }
+        }
+        if(line == 0){
+            // 在连续四个空格前追加换行符
+            decode = decode.replaceAll("\\u0020\\u0020\\u0020\\u0020","\n    ");
+        }
         String originMd5 = DigestUtils.md5DigestAsHex(decode.getBytes());
         File originFile = new File(originPath + "/" + originMd5);
         if (!originFile.exists()) {
