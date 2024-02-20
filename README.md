@@ -8,7 +8,7 @@
 3. 建议使用img标签而不是`![]()` ，兼容性略好
 4. github上无法显示，csdn也不可以，typora和vscode可以，其他未测试
 
-例子（csdn效果：https://blog.csdn.net/a1033025319/article/details/103903434 ）：
+例子：
 
 ```
 <img src='http://101.201.102.238:8081/svg?
