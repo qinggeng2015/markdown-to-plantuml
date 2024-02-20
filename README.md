@@ -11,7 +11,7 @@
 例子（csdn效果：https://blog.csdn.net/a1033025319/article/details/103903434 ）：
 
 ```
-<img src='http://101.201.102.238:8080/svg?
+<img src='http://101.201.102.238:8081/svg?
     @startuml
     actor Foo1
     boundary Foo2
@@ -30,7 +30,7 @@
 
 
 ```
-<img src='http://101.201.102.238:8080/svg?
+<img src='http://101.201.102.238:8081/svg?
     @startuml
     interface Observer{
             update()
