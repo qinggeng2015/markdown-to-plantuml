@@ -11,7 +11,7 @@
 例子（csdn效果：https://blog.csdn.net/a1033025319/article/details/103903434 ）：
 
 ```
-<img src='http://139.199.126.68:8080/svg?
+<img src='http://101.201.102.238:8080/svg?
     @startuml
     actor Foo1
     boundary Foo2
@@ -28,26 +28,9 @@
 '/>
 ```
 
-```
-<img src='http://139.199.126.68:8080/svg?
-    @startuml
-    actor Foo1
-    boundary Foo2
-    control Foo3
-    entity Foo4
-    database Foo5
-    collections Foo6
-    Foo1 -> Foo2 : To boundary
-    Foo1 -> Foo3 : To control
-    Foo1 -> Foo4 : To entity
-    Foo1 -> Foo5 : To database
-    Foo1 -> Foo6 : To collections
-    @enduml
-'/>
-```
 
 ```
-<img src='http://139.199.126.68:8080/svg?
+<img src='http://101.201.102.238:8080/svg?
     @startuml
     interface Observer{
             update()
